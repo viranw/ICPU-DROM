@@ -1,48 +1,27 @@
 {% extends 'base/base_blanknav.html' %}
 
 {% block siteTitle %}
-PROcess
+QF-DROM
 {% endblock %}
 
 {% block navTitle %}
-PROcess
+QF-DROM
 {% endblock %}
 
 {% block title %}
-🏆 Welcome
+✈️ Welcome
 {% endblock %}
 
 {% block content %}
 
-
-  {% if tournaments == -1 %}
-    <div class="container-fluid">
-      <div class="alert alert-danger" role="alert">
-        {% if user.is_staff %}
-        There are no tournaments currently set up on this site. Add one below.
-        {% else %}
-        There are no tournaments currently set up on this site. Ask an admin to add some.
-        {% endif %}
-      </div>
-    </div>
-  {% else %}
   <div class="container-fluid">
     <div class="alert alert-primary" role="alert">
-      Please select your tournament from the list below.
+      Please select your event from the list below.
     </div>
     <ul class="list-group">
-      {% for tournament in tournaments.all %}
-        {% if user.is_superuser %}
-        <a href="{% url 'admin_dashboard' tournament.slug %}" class="list-group-item list-group-item-action">🔢 {{tournament.full_name}} - <b>Tab Room</b></a>
-        <a href="#" class="list-group-item list-group-item-action disabled">🚗 {{tournament.full_name}} - <b>Logistics Manager</b></a>
-        <a href="{% url 'tournament_home' tournament.slug %}" class="list-group-item list-group-item-action">👀 {{tournament.full_name}} - <b>Public Area</b></a>
-        {% else %}
-        <a href="{% url 'tournament_home' tournament.slug %}" class="list-group-item list-group-item-action">🏆 {{tournament.full_name}} </a>
-        {% endif %}
-      {% endfor %}
+        <a href="#" class="list-group-item list-group-item-action">Placeholder Link</a>
     </ul>
   </div>
-{% endif %}
 
 {% if user.is_staff %}
 <br>
