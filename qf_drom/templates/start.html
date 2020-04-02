@@ -1,4 +1,4 @@
-{% extends 'base_blanknav.html' %}
+{% extends 'base/base_blanknav.html' %}
 
 {% block siteTitle %}
 PROcess
@@ -59,7 +59,7 @@ PROcess
 
 <div class="container-fluid">
   <ul class="list-group">
-    <a href="javascript:{document.getElementById('logout').submit()}" target="_blank" class="list-group-item list-group-item-action">🔒Logout ({{user.username}})</a>
+    <a href="#" target="_blank" class="list-group-item list-group-item-action">🔒Logout ({{user.username}})</a>
     <form id="logout" method="POST" action="{% url 'logout' %}">
       {% csrf_token %}
       <input type="hidden"/>
@@ -72,7 +72,7 @@ PROcess
 <br>
 <div class="container-fluid">
   <ul class="list-group">
-    <a href="{% url 'login' %}" class="list-group-item list-group-item-action">🔐 Login</a>
+    <a href="#" class="list-group-item list-group-item-action">🔐 Login</a>
   </ul>
 </div>
 
