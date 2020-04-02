@@ -135,3 +135,23 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 MEDIA_URL = '/media/'
+
+
+
+ADMINS = [('Viran', 'viran.w@icloud.com')]
+SECRET_KEY = '6u3$&-*g2u8n+am*18s55bp#p-3#*2fnhm-e%%(#%1solz=3zd'
+
+# Heroku vs Local - Uncomment the relevant section
+
+# Local settings
+
+ALLOWED_HOSTS = ['process5.herokuapp.com', 'https://process5.herokuapp.com', 'localhost']
+DEBUG = True
+
+
+# Heroku Settings
+"""
+ALLOWED_HOSTS = ['process5.herokuapp.com', 'https://process5.herokuapp.com']
+DEBUG = False
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+"""
