@@ -1,0 +1,26 @@
+{% extends 'base_blank.html' %}
+
+{% block footer %}
+
+<footer class="footer">
+  <div class="container-fluid" style="background-color:#333">
+    <div class="row align-items-center" style="color:#FFFFFF">
+      <div class="col">
+        <br>
+        {% if tournament.full_name %}
+        {{tournament.full_name}} runs on <b>PROcess</b>, a digital competition management system for high school and mock trial competitions.
+        <br><small>PROcess is designed and developed by Viran Weerasekera.</small>
+        {% else %}
+        This site runs on <b>PROcess</b>, a digital competition management system for high school and mock trial competitions.
+        <br><small>PROcess is designed and developed by Viran Weerasekera.</small>
+        {% endif %}
+        <br>
+        <br>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+{% endblock %}

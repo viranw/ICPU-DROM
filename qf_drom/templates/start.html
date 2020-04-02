@@ -1,0 +1,84 @@
+{% extends 'base_blanknav.html' %}
+
+{% block siteTitle %}
+PROcess
+{% endblock %}
+
+{% block navTitle %}
+PROcess
+{% endblock %}
+
+{% block title %}
+🏆 Welcome
+{% endblock %}
+
+{% block content %}
+
+
+  {% if tournaments == -1 %}
+    <div class="container-fluid">
+      <div class="alert alert-danger" role="alert">
+        {% if user.is_staff %}
+        There are no tournaments currently set up on this site. Add one below.
+        {% else %}
+        There are no tournaments currently set up on this site. Ask an admin to add some.
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+  <div class="container-fluid">
+    <div class="alert alert-primary" role="alert">
+      Please select your tournament from the list below.
+    </div>
+    <ul class="list-group">
+      {% for tournament in tournaments.all %}
+        {% if user.is_superuser %}
+        <a href="{% url 'admin_dashboard' tournament.slug %}" class="list-group-item list-group-item-action">🔢 {{tournament.full_name}} - <b>Tab Room</b></a>
+        <a href="#" class="list-group-item list-group-item-action disabled">🚗 {{tournament.full_name}} - <b>Logistics Manager</b></a>
+        <a href="{% url 'tournament_home' tournament.slug %}" class="list-group-item list-group-item-action">👀 {{tournament.full_name}} - <b>Public Area</b></a>
+        {% else %}
+        <a href="{% url 'tournament_home' tournament.slug %}" class="list-group-item list-group-item-action">🏆 {{tournament.full_name}} </a>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+{% if user.is_staff %}
+<br>
+<hr>
+<br>
+
+<div class="container-fluid">
+  <ul class="list-group">
+    <a href="/database/tournaments/tournament/add/" class="list-group-item list-group-item-action">➕ Create New Tournament</a>
+    <a href="{% url 'admin:index' %}" target="_blank" class="list-group-item list-group-item-action">📝 Edit Database</a>
+  </ul>
+</div>
+<br>
+
+<div class="container-fluid">
+  <ul class="list-group">
+    <a href="javascript:{document.getElementById('logout').submit()}" target="_blank" class="list-group-item list-group-item-action">🔒Logout ({{user.username}})</a>
+    <form id="logout" method="POST" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <input type="hidden"/>
+    </form>
+  </ul>
+</div>
+
+{% else %}
+
+<br>
+<div class="container-fluid">
+  <ul class="list-group">
+    <a href="{% url 'login' %}" class="list-group-item list-group-item-action">🔐 Login</a>
+  </ul>
+</div>
+
+{% endif %}
+
+
+
+
+{% endblock %}
