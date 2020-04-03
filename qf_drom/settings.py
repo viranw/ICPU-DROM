@@ -152,7 +152,7 @@ SECRET_KEY = '6u3$&-*g2u8n+am*18s55bp#p-3#*2fnhm-e%%(#%1solz=3zd'
 
 # Local settings
 
-ALLOWED_HOSTS = ['process5.herokuapp.com', 'https://process5.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['qf-drom.herokuapp.com', 'https://qf-drom.herokuapp.com', 'localhost']
 DEBUG = True
 
 
