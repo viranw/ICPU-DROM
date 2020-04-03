@@ -160,4 +160,5 @@ DEBUG = True
 ALLOWED_HOSTS = ['qf-drom.herokuapp.com', 'https://qf-drom.herokuapp.com']
 DEBUG = False
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+SECRET_KEY = os.environ['SECRET_KEY']
 """
