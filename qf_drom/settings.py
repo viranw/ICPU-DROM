@@ -157,7 +157,7 @@ DEBUG = True
 
 # Heroku Settings
 """
-ALLOWED_HOSTS = ['process5.herokuapp.com', 'https://process5.herokuapp.com']
+ALLOWED_HOSTS = ['qf-drom.herokuapp.com', 'https://qf-drom.herokuapp.com']
 DEBUG = False
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 """
