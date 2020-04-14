@@ -78,21 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'qf_drom.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'qf_drom',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST':'localhost',
-        'PORT': '5432'
-    }
-}
-
+DATABASES = {}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -150,15 +136,16 @@ SECRET_KEY = '6u3$&-*g2u8n+am*18s55bp#p-3#*2fnhm-e%%(#%1solz=3zd'
 # Heroku vs Local - Uncomment the relevant section
 
 # Local settings
-
-ALLOWED_HOSTS = ['qf-drom.herokuapp.com', 'https://qf-drom.herokuapp.com', 'localhost']
-DEBUG = True
-
-
-# Heroku Settings
-"""
 ALLOWED_HOSTS = ['qf-drom.herokuapp.com', 'https://qf-drom.herokuapp.com']
 DEBUG = False
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-SECRET_KEY = os.environ['SECRET_KEY']
-"""
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+
+if not DEBUG:
+    SECRET_KEY = os.environ['SECRET_KEY']
