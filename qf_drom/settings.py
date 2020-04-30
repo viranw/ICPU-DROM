@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'qf_drom'
+    'qf_drom',
+    'users',
 ]
 
 MIDDLEWARE = [

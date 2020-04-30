@@ -1,0 +1,52 @@
+{% extends 'base/base_blanknav.html' %}
+
+{% block siteTitle %}
+Login
+{% endblock %}
+
+{% block navTitle %}
+QF-DROM
+{% endblock %}
+
+{% block title %}
+🔐 Login
+{% endblock %}
+
+{% block content %}
+
+{% if error %}
+<div class="container-fluid">
+  <div class="alert alert-danger" role="alert">
+  {{ error }}
+  </div>
+</div>
+{% endif %}
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Authentication
+    </div>
+    <div class="card-body">
+      <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <b>Username</b>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="username">
+        </div>
+
+        <b>Password</b>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="password">
+        </div>
+        <br>
+
+        <input class="btn btn-primary btn-block" type="submit" value="Login"/>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

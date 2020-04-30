@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views as baseViews
+from users import views as userViews
 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('database/', admin.site.urls),
+    path('login/', userViews.login, name="login"),
+    path('logout/', userViews.logout, name="logout"),
 
     path('', baseViews.start, name='start')
 
