@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'qf_drom',
     'users',
+    'flights',
 ]
 
 MIDDLEWARE = [
@@ -105,13 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+TIME_ZONE = os.environ.get('TIME_ZONE', 'Australia/Sydney')
 
 
 # Static files (CSS, JavaScript, Images)
@@ -129,15 +129,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 MEDIA_URL = '/media/'
 
-
-
-ADMINS = [('Viran', 'viran.w@icloud.com')]
-SECRET_KEY = '6u3$&-*g2u8n+am*18s55bp#p-3#*2fnhm-e%%(#%1solz=3zd'
-
-# Heroku vs Local - Uncomment the relevant section
-
-# Local settings
-ALLOWED_HOSTS = ['qf-drom.herokuapp.com', 'https://qf-drom.herokuapp.com']
+# Heroku settings
+ALLOWED_HOSTS = ['*']
 DEBUG = False
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 

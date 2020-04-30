@@ -18,19 +18,27 @@ QF-DROM
     <div class="alert alert-primary" role="alert">
       Please select your event from the list below.
     </div>
+
+    {% load flight_tags %}
+    {% all_flights as flights %}
     <ul class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">Placeholder Link</a>
+        {% for flight in flights %}
+        <a href="{% url 'flight_dashboard' flight.id %}" class="list-group-item list-group-item-action">✈️ <b>{{flight.name}}</b> - {{flight.date}}</a>
+        {% endfor %}
     </ul>
+
+    <br>
+    <hr>
   </div>
 
 {% if user.is_staff %}
-<br>
-<hr>
+
+
 <br>
 
 <div class="container-fluid">
   <ul class="list-group">
-    <a href="/database/tournaments/tournament/add/" class="list-group-item list-group-item-action">➕ Create New Tournament</a>
+    <a href="/database/flights/flight/add/" class="list-group-item list-group-item-action">➕ Create New Flight</a>
     <a href="{% url 'admin:index' %}" target="_blank" class="list-group-item list-group-item-action">📝 Edit Database</a>
   </ul>
 </div>

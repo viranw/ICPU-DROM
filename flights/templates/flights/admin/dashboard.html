@@ -1,0 +1,49 @@
+{% extends 'base/base_admin.html' %}
+
+{% block siteTitle %}
+QF-DROM
+{% endblock %}
+
+{% block navTitle %}
+QF-DROM
+{% endblock %}
+
+{% block subNav %}
+{% endblock %}
+
+{% block title %}
+✈️ {{flight.name}}  <small class="text-secondary"><small>{{flight.date}}</small></small>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-fluid">
+  <div class="row align-items-start">
+    <div class="col">
+      <div class="alert alert-primary" role="alert">
+        ⬆️ Select an option from the white menu bar, or from the list below.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row align-items-start">
+    <div class="col">
+      <ul class="list-group">
+        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          🙋‍ Import Passengers
+        </a>
+        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          🙋‍ Import Reaccommodations
+        </a>
+        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          🙋‍ View Passengers
+        </a>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+  {% endblock %}

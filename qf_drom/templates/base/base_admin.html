@@ -1,0 +1,184 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title> {% block siteTitle %}{% endblock %} </title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="#" sizes="180x180">
+    <link rel="icon" href="#" sizes="32x32" type="image/png">
+    <link rel="icon" href="#" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="#">
+    <link rel="icon" href="#">
+
+    <script>
+    function startTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById('timeNow').innerHTML =
+      "The time now is <b>" + h + ":" + m + ":" + s+"</b>";
+      var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+    }
+    </script>
+
+    <style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+    body {
+      margin-bottom: 60px; /* Margin bottom by footer height */
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #f5f5f5;
+    }
+    </style>
+  </head>
+
+  <body style="background-color:#f2f2f2;" onload="startTime()">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'start' %}">QF-DROM</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+
+          <a href="{% url 'flight_dashboard' flight.id %}"><button type="button" class="btn btn-danger">📝 Admin Area</button></a>
+
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+             <a class="nav-link" href="#"> </a>
+            </li>
+          </ul>
+
+
+          {% if user.is_staff %}
+          <a href="{% url 'admin:index' %}" target="_blank"><button type="button" class="btn btn-warning">Edit Database</button></a>
+          {% endif %}
+
+          <li class="nav-item">
+           <a class="nav-link" href="#"> </a>
+          </li>
+
+
+
+
+
+
+
+        </ul>
+        <span class="navbar-text">
+          {% if user.is_authenticated %}
+
+          <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout ({{user.username}})</a>
+          <form id="logout" method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <input type="hidden"/>
+          </form>
+
+          {% else %}
+
+
+          <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+
+          {% endif %}
+        </span>
+      </div>
+    </nav>
+
+    {% block subNav %}
+    {% endblock %}
+
+
+    <br>
+
+    {% block backlink %}
+    {% endblock %}
+
+
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm">
+      <h2>{% block title %} {% endblock %}</h2>
+    </div>
+      <div class="col-sm" align="right" text-align="right">
+        {% block forwardlink %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+
+
+    <br>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <br>
+    <br>
+
+    <!-- Footer -->
+    {% block footer %}
+    <footer class="footer">
+    <div class="container-fluid" style="background-color:#333">
+      <div class="row align-items-center" style="color:#FFFFFF">
+        <div class="col">
+          <br>
+          <b>Empire</b> Volunteer Application Management System
+          <br>
+          <br>
+        </div>
+
+      </div>
+
+    </div>
+    </footer>
+
+    {% endblock %}
+    <!-- Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+
+  </body>
+</html>

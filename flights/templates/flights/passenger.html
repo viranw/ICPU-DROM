@@ -1,0 +1,37 @@
+{% extends 'base/base_blanknav.html' %}
+
+{% block siteTitle %}
+Empire Mock Trial
+{% endblock %}
+
+{% block navTitle %}
+Empire Mock Trial
+{% endblock %}
+
+{% block title %}
+📝 Welcome, {{passenger.name}}
+
+{% endblock %}
+
+{% block content %}
+
+{% load tz %}
+
+<div class="container-fluid">
+  <div class="alert alert-info" role="alert">
+    Something something here's ur personal page.
+  </div>
+</div>
+
+
+
+<div class="container-fluid">
+  <ul class="list-group">
+    <a href="{% url 'start' %}" class="list-group-item list-group-item-action">🏠 Home</a>
+  </ul>
+</div>
+
+
+
+
+{% endblock %}

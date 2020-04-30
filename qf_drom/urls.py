@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views as baseViews
 from users import views as userViews
+from flights import views as flightViews
 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
@@ -24,6 +25,10 @@ urlpatterns = [
     path('login/', userViews.login, name="login"),
     path('logout/', userViews.logout, name="logout"),
 
-    path('', baseViews.start, name='start')
+    path('', baseViews.start, name='start'),
+
+    path('flights/<int:flight_id>/admin', flightViews.flight_dashboard, name="flight_dashboard"),
+
+    path('passenger/<str:url_key>', flightViews.passenger_page, name="passenger"),
 
 ]
