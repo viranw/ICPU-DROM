@@ -20,7 +20,6 @@ from users import views as userViews
 from flights import views as flightViews
 
 urlpatterns = [
-    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('database/', admin.site.urls),
     path('login/', userViews.login, name="login"),
     path('logout/', userViews.logout, name="logout"),
