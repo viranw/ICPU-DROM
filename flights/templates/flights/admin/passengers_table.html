@@ -1,0 +1,147 @@
+<div class="container-fluid">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Search</span>
+    </div>
+    <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="">
+  </div>
+</div>
+
+<p><button onclick="sortTable()" id="test" hidden>For some reason this has to be here for the sorting to work</button></p>
+
+
+<div class="container-fluid">
+  <div class="row align-items-start">
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-header">
+          <b>Affected Passengers</b>
+        </div>
+        <div class="card-body">
+          <table class="table table-sm table-striped sortable" id="passengerTable">
+            <thead style="background-color: #12284c">
+              <tr>
+                <th scope="col" style="color: #FFFFFF" id="sort_name" onclick="sortTable_name()">Name</th>
+                <th scope="col" style="color: #FFFFFF">Profile (TODO Modal)</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for passenger in flight.passengers_by_name %}
+                <tr>
+                  <td><b>{{passenger.name}}</b></td>
+                  <td>{{coach.getDetailedTeams}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <br>
+    </div>
+  <br>
+
+  </div>
+</div>
+
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  tables = ["passengerTable"]
+  tableNames = ["passengerTable"]
+
+  for (var t=0;t<tableNames.length;t++) {
+    table = document.getElementById(tableNames[t]);
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 1; i < tr.length; i++) {
+      td_all = tr[i].getElementsByTagName("td")
+      text_vals = []
+      for (j = 0; j < td_all.length; j++) {
+        td = td_all[j];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          text_vals.push(txtValue)
+        }
+      }
+
+      tr[i].style.display = "none";
+      for (var x=0;x<text_vals.length;x++) {
+        if (text_vals[x].toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        }
+      }
+
+    }
+  }
+}
+
+
+function sortTable_name() {
+  el_name = document.getElementById("sort_name")
+  el_teams = document.getElementById("sort_teams")
+
+  if (el_name.innerHTML == "Name (Ascending)") {
+    sortTable(0,false)
+    el_name.innerHTML = "Name (Descending)"
+  } else {
+    sortTable(0,true)
+    el_name.innerHTML = "Name (Ascending)"
+  }
+}
+
+
+function sortTable(el, ascending) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("passengerTable");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[el];
+      y = rows[i + 1].getElementsByTagName("TD")[el];
+      // Check if the two rows should switch place:
+      if (ascending == true) {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+
+      }
+
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+
+  document.getElementById("test").innerHTML = "Test"
+  document.getElementById("test").disabled = true
+}
+
+
+</script>

@@ -17,11 +17,21 @@ def flight_dashboard(request, flight_id):
 
     return render(request, 'flights/admin/dashboard.html', params)
 
-
-def passenger_page(request, url_key):
-
+@user_passes_test(lambda u: u.is_superuser)
+def passengers(request, flight_id):
     params = {}
 
+    try:
+        flight = Flight.objects.get(pk=flight_id)
+        params['flight'] = flight
+    except Exception:
+        raise Http404
+
+    return render(request, 'flights/admin/passengers.html', params)
+
+
+def passenger_page(request, url_key):
+    params = {}
     try:
         passenger = Passengers.objects.get(url_key=url_key)
         params['passenger'] = passenger

@@ -1,0 +1,33 @@
+{% extends 'base/base_admin.html' %}
+
+{% block siteTitle %}
+QF-DROM
+{% endblock %}
+
+{% block navTitle %}
+QF-DROM
+{% endblock %}
+
+{% block subNav %}
+{% endblock %}
+
+{% block title %}
+🙍 Passengers
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-fluid">
+  <div class="row align-items-start">
+    <div class="col">
+      <div class="alert alert-primary" role="alert">
+        ⬆️ Select an option from the white menu bar, or from the list below.
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'flights/admin/passengers_table.html' %}
+
+{% endblock %}

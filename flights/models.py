@@ -26,10 +26,19 @@ class Flight(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return "[{}] {}".format(self.date, self.name)
+        return "[{}] {}".format(self.date_code(), self.name)
+
+    def passengers_by_name(self):
+        return self.passenger_set.all().order_by('name')
+
+    def date_code(self):
+        return self.date.strftime("%Y%m%d")
 
 class Passenger(models.Model):
     name = models.CharField(max_length=200)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
     ff = models.CharField(max_length=50, choices=ff_tiers, verbose_name="FF Status", null=True, blank=True)
     url_key = models.SlugField(null=True, blank=True, unique=True, verbose_name="URL Key", help_text="The unique identifier that is used to create the passenger's unique page.")
+
+    def __str__(self):
+        return "[{} {}] {}".format(self.flight.date_code(), self.flight.name, self.name)
