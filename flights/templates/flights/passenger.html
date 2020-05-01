@@ -1,11 +1,11 @@
 {% extends 'base/base_blanknav.html' %}
 
 {% block siteTitle %}
-Empire Mock Trial
+QF-DROM
 {% endblock %}
 
 {% block navTitle %}
-Empire Mock Trial
+QF-DROM
 {% endblock %}
 
 {% block title %}
@@ -18,12 +18,48 @@ Empire Mock Trial
 {% load tz %}
 
 <div class="container-fluid">
-  <div class="alert alert-info" role="alert">
-    Something something here's ur personal page.
+  <div class="alert alert-danger" role="alert">
+    Your flight, {{passenger.flight.name}} on {{passenger.flight.date}} has been significantly disrupted.
+    To provide the best recovery option for you, please fill out this form indicating your preferences.
   </div>
 </div>
 
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <b>Are you travelling with small children?</b>
+        <div class="input-group mb-3">
+          <select class="form-control" name="username" required>
+            <option>Yes</option>
+            <option selected>No</option>
+          </select>
+        </div>
 
+        <b>What is your first preference?</b>
+        <div class="input-group mb-3">
+          <select class="form-control" name="username" required>
+            <option selected>Stay in Los Angeles overnight and fly tomorrow</option>
+            <option>Rebook onto the next <b>direct</b> flight to Sydney (in 1 day)</option>
+            <option>Rebook onto the next flight to Sydney <b>via Melbourne</b> (today)</option>
+            <option>Cancel my travel</option>
+          </select>
+        </div>
+
+        <b>Is there anything else you'd like to add?</b>
+        <div class="input-group mb-3">
+          <textarea class="form-control" rows="10" name="data"></textarea>
+
+        </div>
+
+        <input class="btn btn-primary btn-block" type="submit" value="Submit"/>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br>
 
 <div class="container-fluid">
   <ul class="list-group">
