@@ -32,8 +32,9 @@ def passengers(request, flight_id):
 
 def passenger_page(request, url_key):
     params = {}
+
     try:
-        passenger = Passengers.objects.get(url_key=url_key)
+        passenger = Passenger.objects.get(url_key=url_key)
         params['passenger'] = passenger
     except Exception:
         raise Http404
