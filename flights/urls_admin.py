@@ -6,5 +6,6 @@ from . import views
 urlpatterns = [
     path('',views.flight_dashboard, name="flight_dashboard"),
     path('passengers',views.passengers, name="passengers"),
+    path('reaccom',views.reaccom, name="reaccom"),
 
 ]

@@ -5,16 +5,8 @@
 {% if user.is_authenticated %}
 <li class="nav-item">
 
-
-  <a href="{% url 'my_records' tournament.slug %}"><button type="button" class="btn btn-info">My Team Page</button></a>
-  <a href="{% url 'my_staff_home' tournament.slug %}"><button type="button" class="btn btn-info">My Staff Page</button></a>
-
   {% if user.is_staff %}
-  <a href="{% url 'admin_dashboard' tournament.slug %}"><button type="button" class="btn btn-warning">Admin Area</button></a>
-  {% endif %}
-
-  {% if user.is_staff %}
-  <a href="{% url 'admin:index' %}" target="_blank"><button type="button" class="btn btn-warning">Edit Database</button></a>
+  <a href="{% url 'flight_dashboard' flight.id %}"><button type="button" class="btn btn-warning">Admin Area</button></a>
   {% endif %}
 
  </li>
@@ -24,66 +16,11 @@
  <a class="nav-link" href="#"> </a>
 </li>
 
+<li class="nav-item">
+<a class="nav-link" href="{% url 'sample_flight_home' flight.id %}">Home</a>
+</li>
+
 {% block homeButton %}
 {% endblock %}
 
-{% if tournament.pip_pairings %}
-{% if tournament.getCurrentRound.pairingsReleased %}
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'pairings' tournament.slug tournament.getCurrentRound.sequence %}">Pairings for {{tournament.getCurrentRound.name}} </a>
-</li>
-{% endif %}
-
-
-{% if tournament.getReleasedPairings != 0 %}
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  All Pairings
-</a>
-<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-  {% for round in tournament.getReleasedPairings %}
-  <a class="dropdown-item" href="{% url 'pairings' tournament.slug round.sequence %}">{{ round.name }}</a>
-  {% endfor %}
-</div>
-</li>
-{% endif %}
-{% endif %}
-
-
-{% if tournament.getReleasedResults != 0 %}
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Results
-</a>
-<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-  {% for round in tournament.getReleasedResults %}
-  <a class="dropdown-item" href="{% url 'results_round' tournament.slug round.sequence %}">{{ round.name }}</a>
-  {% endfor %}
-</div>
-</li>
-{% endif %}
-
-{% if tournament.showCO %}
-<li class="nav-item">
-<a class="nav-link" href="{% url 'co_public' tournament.slug %}">Challenge Order</a>
-</li>
-{% endif %}
-
-{% if tournament.pip_standings %}
-<li class="nav-item">
-<a class="nav-link" href="{% url 'standings_team_default' tournament.slug %}">Standings</a>
-</li>
-{% endif %}
-
-{% if tournament.pip_field %}
-<li class="nav-item">
-<a class="nav-link" href="{% url 'field_public' tournament.slug 'school' %}">Field</a>
-</li>
-{% endif %}
-
-{% if tournament.pip_schedule %}
-<li class="nav-item">
-<a class="nav-link" href="#">Schedule</a>
-</li>
-{% endif %}
 {% endblock %}

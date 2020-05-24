@@ -27,6 +27,7 @@ urlpatterns = [
     path('', baseViews.start, name='start'),
 
     path('flights/<int:flight_id>/admin/', include('flights.urls_admin')),
+    path('flights/<int:flight_id>/', include('flights.urls_public')),
 
 
     path('passenger/<str:url_key>', flightViews.passenger_page, name="passenger"),

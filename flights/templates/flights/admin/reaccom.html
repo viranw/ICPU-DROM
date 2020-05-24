@@ -1,0 +1,23 @@
+{% extends 'base/base_admin.html' %}
+
+{% block siteTitle %}
+QF-DROM
+{% endblock %}
+
+{% block navTitle %}
+QF-DROM
+{% endblock %}
+
+{% block subNav %}
+{% endblock %}
+
+{% block title %}
+✈️ Sample Reaccommodation List
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+{% include 'flights/admin/reaccom_table.html' %}
+
+{% endblock %}

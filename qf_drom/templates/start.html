@@ -23,7 +23,11 @@ QF-DROM
     {% all_flights as flights %}
     <ul class="list-group">
         {% for flight in flights %}
-        <a href="{% url 'flight_dashboard' flight.id %}" class="list-group-item list-group-item-action">✈️ <b>{{flight.name}}</b> - {{flight.date}}</a>
+        {% if user.is_superuser %}
+        <a href="{% url 'flight_dashboard' flight.id %}" class="list-group-item list-group-item-action">🔢 <b>{{flight.name}}</b> - {{flight.date}} (Admin)</a>
+        {% endif %}
+        <a href="{% url 'sample_flight_home' flight.id %}" class="list-group-item list-group-item-action">✈️ <b>{{flight.name}}</b> - {{flight.date}}</a>
+
         {% endfor %}
     </ul>
 

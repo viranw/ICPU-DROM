@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block siteTitle %}
+QF-DROM
+{% endblock %}
+
+{% block navTitle %}
+QF-DROM
+{% endblock %}
+
+{% block subNav %}
+{% endblock %}
+
+{% block title %}
+🙍 Sample Passenger List
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+{% include 'flights/admin/passengers_table.html' %}
+
+{% endblock %}

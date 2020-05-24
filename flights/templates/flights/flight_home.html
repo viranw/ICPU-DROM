@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% block siteTitle %}
+QF-DROM
+{% endblock %}
+
+{% block navTitle %}
+QF-DROM
+{% endblock %}
+
+{% block title %}
+✈️ {{flight.name}}
+{% endblock %}
+
+{% block content %}
+
+  <div class="container-fluid"
+    <ul class="list-group">
+        <a href="{% url 'sample_flight_passengers' flight.id %}" class="list-group-item list-group-item-action">🙍 Sample Passenger List</a>
+        <a href="{% url 'sample_flight_reaccom' flight.id %}" class="list-group-item list-group-item-action">✈️ Sample Reaccommodation List</a>
+    </ul>
+  </div>
+
+
+{% endblock %}
