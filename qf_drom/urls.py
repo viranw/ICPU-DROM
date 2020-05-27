@@ -32,4 +32,6 @@ urlpatterns = [
 
     path('passenger/<str:url_key>', flightViews.passenger_page, name="passenger"),
 
+    path('about/drom', baseViews.about_drom, name="about_drom")
+
 ]

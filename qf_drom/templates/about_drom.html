@@ -1,0 +1,105 @@
+{% extends 'base/base_blanknav.html' %}
+
+{% block siteTitle %}
+QF-DROM
+{% endblock %}
+
+{% block navTitle %}
+QF-DROM
+{% endblock %}
+
+{% block subNav %}
+{% endblock %}
+
+{% block title %}
+📉 About the Disruption Recovery Optimisation Model
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-fluid">
+
+  <div class="card">
+    <div class="card-body bg-danger text-white">
+      <h4 class="card-text">How can we provide better, most cost-efficient solutions to customers facing disruption?</h4>
+    </div>
+    <div class="card-body">
+      The issue of managing customer disruption is one of the biggest opportunities that face the airline industry today.
+      An airline which is able to optimise costs of recovering customers, both from their perspective and their passengers',
+      stands to benefit significantly by:
+      <ul>
+        <li>Reducing the direct cost that the airline expends directly to manage passengers;</li>
+        <li>Considering, and therefore reducing, the opportunity cost of allocating passengers to solutions; and</li>
+        <li>Factoring passenger convenience, which increases satisfaction and encourages future loyalty to the brand.</li>
+      </ul>
+
+      The airline industry has, in recent time, struggled with innovating on this front, primarily given the unpredictable nature of disruption events.
+      Disruptions tend to be the product of either:
+
+      <ul>
+        <li><b>Macro Factors</b>, which affect groups of flights at at time (eg. aircraft defects and industrial action); or</li>
+        <li><b>Micro Factors</b>, which affect single flights at a time (eg. Air Traffic Control delays) but which can have knock-on effects for other
+          flights which use the same aircraft or passengers.</li>
+      </ul>
+
+      Currently, to reaccomodate passengers, airlines either rebook all passengers on the same solution, which creates a missed opportunity to
+      more quickly and efficiently reaccommodate high-priority passengers, or they engage in review and rebooking on a passenger-by-passenger basis. This process
+      is resource-intensive and greedy; it only considers what is best for that individual customer, and doesn't consider the opportunity cost of allocating customers in a certain way.
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-body bg-primary text-white">
+        <h4 class="card-text">What are the results of our research?</h4>
+      </div>
+      <div class="card-body">
+        The <b>Disruption Recovery Optimisation Model</b> (DROM) is based on Linear Programming (a method of artificial-intelligence-based decision science).
+        Given a list of disrupted passenger units, and a list of potential reaccommodations available to the airline, the DROM is designed to produce an optimal
+        allocation of passengers to reaccommodations, in a way which minimises the overall cost of the reaccommodation. The DROM model also includes an <b>automatic passenger
+          notification system</b> (APNS), which can redirect them to a personalised form that they can use to nominate their preferred method of reaccommodation.
+
+        <br>Practically, the workflow of this model is as follows:
+        <ol>
+          <li>Qantas identifies that a disruption event is in progress/has occurred, and isolates a list of passengers which have been disrupted.</li>
+          <li>Qantas identifies possible reaccommodations for passengers that have been disrupted, and compiles these into a list.</li>
+          <li>Qantas uploads the lists from (1) and (2) into the DROM.</li>
+          <li>The DROM's APNS contacts passengers, and asks them to complete a preference form located on their personalised page.</li>
+          <li>The DROM uses the information provided by Qantas, the information provided by the passengers, and our <b>cost function</b> to evaluate the cost of allocating
+          a passenger to each possible solution.</li>
+          <li>The DROM uses the Hungarian algorithm to select the combination of allocations which minimises the overall cost of all reaccommodations, as defined by the cost function.</li>
+          <li>The DROM outputs the final list of allocations to Qantas.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-body bg-primary text-white">
+        <h4 class="card-text">What is cost?</h4>
+      </div>
+      <div class="card-body">
+        As we flagged above, the notion of <b>cost</b> has been traditionally restricted to the direct cost that Qantas incurs as a result of a reaccommodation.
+        This belies the true 'cost' of reaccommodation, which should include the inconvenience experienced by passengers (which, in turn, is a proxy for their likelihood
+        to engage with the airline in the future). To overcome this barrier, the DROM is assessed using a cost function, which combines:
+        <ul>
+          <li>The importance of the passenger (measured by fare class, frequent flyer status and other engagement with Qantas loyalty brands);</li>
+          <li>The inconvenience of the reaccommodation from the passenger's perspective, augmented by factors which make that passenger more vulnerable than others (eg.
+            if the passenger has a serious medical condition or is an unaccompanied minor); and</li>
+          <li>Costs to Qantas of providing the solution.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+{% endblock %}
