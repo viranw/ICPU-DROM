@@ -26,8 +26,10 @@ QF-DROM
         {% if user.is_superuser %}
         <a href="{% url 'flight_dashboard' 1 %}" class="list-group-item list-group-item-action">🔢 <b>{{flight.name}}</b> - {{flight.date}} (Admin)</a>
         {% endif %}
-        <a href="{% url 'sample_flight_home' 1 %}" class="list-group-item list-group-item-action">✈️ <b>{{flight.name}}</b> - {{flight.date}}</a>
         {% endfor %}
+        <a href="{% url 'sample_flight_passengers' 1 %}" class="list-group-item list-group-item-action">🙍 Sample Passenger List</a>
+        <a href="{% url 'sample_flight_reaccom' 1 %}" class="list-group-item list-group-item-action">✈️ Sample Reaccommodation List</a>
+        <a href="/passenger/abcd" class="list-group-item list-group-item-action">👩‍💼 Sample Passenger Preference Form</a>
     </ul>
     <hr>
   </div>
@@ -35,8 +37,7 @@ QF-DROM
   <div class="container-fluid">
     <ul class="list-group">
       <a href="{% url 'about_drom' %}" class="list-group-item list-group-item-action">📉 About the Disruption Recovery Optimisation Model</a>
-      <a href="#" class="list-group-item list-group-item-action">💻 About Linear Programming</a>
-      <a href="#" class="list-group-item list-group-item-action">🔢 The Cost Function</a>
+      <a href="{% url 'about_cost' %}" class="list-group-item list-group-item-action">🔢 The Cost Function</a>
     </ul>
     <hr>
   </div>

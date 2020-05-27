@@ -1,0 +1,152 @@
+{% extends 'base/base_blanknav.html' %}
+
+{% block siteTitle %}
+QF-DROM
+{% endblock %}
+
+{% block navTitle %}
+QF-DROM
+{% endblock %}
+
+{% block subNav %}
+{% endblock %}
+
+{% block title %}
+🔢 The Cost Function
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-fluid">
+
+  <div class="card">
+    <div class="card-body align-middle text-center">
+      <img src="{% static 'cost_inconvenience.png' %}">
+    </div>
+    <div class="card-body">
+      The cost function for assessing the cost of allocating a passenger to a reaccommodation is the sum of:
+      <ul>
+        <li>The Passenger Importance Factor;</li>
+        <li>The Trip-Specific Inconvenience Factor; and</li>
+        <li>Costs to Qantas.</li>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-header">
+        Passenger Importance Factor
+      </div>
+      <div class="card-body align-middle text-center">
+        <img src="{% static 'cost_passenger.png' %}">
+      </div>
+      <div class="card-body">
+        The <b>Passenger Importance Factor</b> is a means of quantifying the financial worth and importance of the passenger to the airline.
+        The model uses this factor to introduce future value as a priority for allocating the most convenient solutions to passengers
+        where it would most benefit airline future revenue (subject to other factors such as vulnerability).
+        <br>
+        This factor is the weighted summation of:
+        <ul>
+          <li>Fare Class;</li>
+          <li>Frequent Flyer Status (with Qantas or the Oneworld Alliance); and</li>
+          <li>Participation in other Qantas loyalty programs (eg. Points Club and branded credit cards).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-header">
+        Trip-Specific Inconvenience Factor
+      </div>
+      <div class="card-body align-middle text-center">
+        <img src="{% static 'cost_inconvenience.png' %}">
+      </div>
+      <div class="card-body">
+        The <b>Trip-Specific Inconvenience Factor</b> quantifies the inconvenience that a passenger experiences from being allocated
+        to a specific reaccommodation. The relevant components of this factor include passenger preferences, the weighted sum of inconveniences
+        associated with the reaccommodation, and the passenger's vulnerability variation.
+        <hr>
+        <b>Passenger Preferences</b>
+        <br>
+        If the passenger has nominated this reaccommodation as one of their preferred options (using the passenger preference form),
+        the trip-specific inconvenience associated with this reaccommodation is 0, regardless of Qantas' subjective evaluation of this
+        inconvenience.
+
+        <hr>
+        <b>Weighted Sum of Inconveniences</b>
+        <br>
+        For each reaccommodation, the following inconveniences are considered:
+        <ul>
+          <li>Whether the reaccommodation requires a long wait in an airport;</li>
+          <li>Whether the reaccommodation requires that the passenger leaves the airport;</li>
+          <li>Whether the reaccommodation requires that the passenger clears immigration in the country of disruption;</li>
+          <li>Whether the reaccommodation requires that the passenger reclaims their checked baggage; and</li>
+          <li>Whether the city/country of disruption is one that the passenger is familiar with.</li>
+        </ul>
+
+        Each of these inconveniences matters differently depending on the type of passenger. For example, a family travelling with
+        small children may prefer the comfort of a hotel room compared to long waits in an airport, while a passenger with a serious
+        medical condition ought remain close to medical attention and airline staff as much as possible. To accommodate these priorities,
+        each of the inconveniences is differently weighted depending on the vulnerability variation of the passenger (see 'vulnerability variation'),
+        and the Kano Model of Customer Satisfaction. Under the Kano model, each inconvenience is categorised as either:
+
+        <ul>
+          <li><b>Must-Be</b> - Inconveniences in this category severely impact the passenger.</li>
+          <li><b>One-Dimensional</b> - Inconveniences in this category do not incur a uniquely significant harm, beyond the base level of inconvenience.</li>
+          <li><b>Attractive</b> - The passenger is notionally indifferent to this inconvenience.</li>
+        </ul>
+
+         Using the Kano model, the inconvenience of the solution, as weighted for the passenger type, is calculated.
+
+        <hr>
+        <b>Vulnerability Variation</b>
+        The vulnerability variation of the passenger categorises a passenger as 'vulnerable' if they:
+        <ul>
+          <li>Are travelling with small children;</li>
+          <li>Are elderly or requiring special handling;</li>
+          <li>Have a serious medical condition;</li>
+          <li>Are an unaccompanied minor.</li>
+        </ul>
+
+        These vulnerability variations serve two purposes; not only do they form the basis of the Kano-model-based weighting of inconveniences,
+        but if a passenger meets one of the above criteria, then the trip-specific inconvenience factor <i>regardless</i> of the reaccommodation is
+        augmented, because the airline ought prioritise these types of passengers.
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-header">
+        Cost to Qantas
+      </div>
+      <div class="card-body align-middle text-center">
+        <img src="{% static 'cost_qantas.png' %}">
+      </div>
+      <div class="card-body">
+        <b>Costs to Qantas</b>, normalised in this function between 0 and 10, include:
+        <ul>
+          <li>Direct costs of reaccommodation (eg. fuel charges for alternate flights, vouchers as compensation for passengers, etc.);</li>
+          <li>Opportunity costs (eg. lost revenue from the seat a customer has been rebooked onto); and</li>
+          <li>Upstream costs (to fix the initial disruption, including repair charges, etc.).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <br>
+</div>
+</div>
+
+
+{% endblock %}

@@ -6,3 +6,6 @@ def start(request):
 
 def about_drom(request):
     return render(request, 'about_drom.html')
+
+def about_cost(request):
+    return render(request, 'about_cost.html')
