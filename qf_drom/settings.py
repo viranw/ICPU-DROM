@@ -14,6 +14,9 @@ import os
 import dj_database_url
 import dotenv
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -141,4 +144,12 @@ except ImportError:
 
 
 if not DEBUG:
+    sentry_sdk.init(
+        dsn="https://233be32762d44612a20942cea7766562@o362522.ingest.sentry.io/5255954",
+        integrations=[DjangoIntegration()],
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )
     SECRET_KEY = os.environ['SECRET_KEY']
